@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Validate Provider Adapters",
+      "trigger": "PostFileSave",
+      "matcher": "src/adapters/.*\\.ts$",
+      "action": {
+        "type": "command",
+        "command": "node -e \"process.stdin.resume();process.stdin.on('data',d=>{try{const j=JSON.parse(d);const fp=j.file||'';const fs=require('fs');if(!fs.existsSync(fp)){process.exit(0);}const src=fs.readFileSync(fp,'utf8');const required=['discover','authenticate','listModels','startSession','streamEvents','sendApproval','cancelSession'];const missing=required.filter(m=>!src.includes(m));if(missing.length>0){process.stderr.write('ADAPTER VALIDATION FAILED: '+fp+' is missing required ProviderAdapter methods:\\\\n  '+missing.join(', ')+'\\\\n');process.exit(1);}else{process.stdout.write('Adapter OK: all required methods present in '+require('path').basename(fp)+'\\\\n');}}catch(e){process.stderr.write('Validation error: '+e.message+'\\\\n');}});\"",
+        "timeout": 15
+      }
+    }
+  ]
+}

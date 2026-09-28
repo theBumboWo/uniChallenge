@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Lint on Save",
+      "trigger": "PostFileSave",
+      "matcher": "src/.*\\.(ts|tsx)$",
+      "action": {
+        "type": "command",
+        "command": "node -e \"process.stdin.resume();process.stdin.on('data',d=>{try{const j=JSON.parse(d);const fp=j.file||'';if(fp){require('child_process').execSync('pnpm eslint --fix \\\"'+fp+'\\\"',{stdio:'pipe',cwd:j.workspaceRoot||process.cwd()});}}catch(e){if(e.stdout)process.stdout.write(e.stdout);if(e.stderr)process.stderr.write(e.stderr);}});\"",
+        "timeout": 30
+      }
+    }
+  ]
+}

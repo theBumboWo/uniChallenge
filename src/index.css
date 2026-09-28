@@ -1,0 +1,67 @@
+/* Global reset and base styles */
+:root {
+  /* Amber accent from design spec: #C68B3C */
+  --color-amber: #c68b3c;
+  --color-amber-light: #e0a855;
+  --color-amber-dark: #a06e28;
+
+  /* Dark glass overlay palette */
+  --color-bg-glass: rgba(15, 12, 8, 0.85);
+  --color-bg-overlay: rgba(20, 16, 10, 0.20);
+  --color-bg-panel: rgba(25, 20, 12, 0.90);
+
+  /* Text */
+  --color-text-primary: rgba(255, 245, 225, 0.95);
+  --color-text-secondary: rgba(200, 185, 155, 0.75);
+  --color-text-muted: rgba(150, 135, 110, 0.60);
+
+  /* Borders */
+  --color-border: rgba(198, 139, 60, 0.25);
+  --color-border-hover: rgba(198, 139, 60, 0.50);
+
+  /* Spacing */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 32px;
+
+  /* Transitions (150-300ms per spec) */
+  --transition-fast: 150ms ease;
+  --transition-base: 220ms ease;
+  --transition-slow: 300ms ease;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  color: var(--color-text-primary);
+}
+
+/* Reduced motion support (Req 17.5) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

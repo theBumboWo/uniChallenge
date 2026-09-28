@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Doc Completeness Check",
+      "trigger": "PostFileSave",
+      "matcher": "\\.kiro/steering/.*\\.md$",
+      "action": {
+        "type": "command",
+        "command": "node -e \"process.stdin.resume();process.stdin.on('data',d=>{try{const j=JSON.parse(d);const fp=j.file||'';const fs=require('fs');if(!fs.existsSync(fp)){process.exit(0);}const src=fs.readFileSync(fp,'utf8');const name=require('path').basename(fp);const checks={  'product.md':['What This Product Is','Core Principles','Visual Aesthetic','The Three Creatures','Creature Behavior Rules','UX Principles'],  'tech.md':['Approved Technology Stack','Project Directory Structure','Architectural Separation','IPC Architecture','Provider Adapter Architecture','Coding Conventions'],  'challenge.md':['Lesson 1','Lesson 2','Lesson 3','Lesson 4','Lesson 5','Lesson 6','Lesson 7'],  'workflow.md':['Spec-First Rule','Definition of Done','Rules for Updating Requirements','Git Conventions','Testing Workflow','Security Checklist']};const required=checks[name];if(!required){process.exit(0);}const missing=required.filter(s=>!src.includes(s));if(missing.length>0){process.stderr.write('DOC CHECK FAILED: '+name+' is missing required sections:\\\\n  '+missing.join(', ')+'\\\\n');process.exit(1);}else{process.stdout.write('Doc OK: '+name+' has all required sections\\\\n');}  }catch(e){process.stderr.write('Doc check error: '+e.message+'\\\\n');}});\"",
+        "timeout": 10
+      }
+    }
+  ]
+}

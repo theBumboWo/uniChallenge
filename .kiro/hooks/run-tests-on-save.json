@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run Tests on Save",
+      "trigger": "PostFileSave",
+      "matcher": "\\.(ts|tsx)$",
+      "action": {
+        "type": "command",
+        "command": "node -e \"const p=require('path'),f=process.stdin.resume()&&'';process.stdin.on('data',d=>{try{const j=JSON.parse(d);const fp=j.file||'';const rel=fp.replace(/\\\\/g,'/');const test=rel.replace(/src\\//,'src/__tests__/').replace(/\\.tsx?$/,'.test.ts');require('fs').existsSync(test)&&require('child_process').execSync('pnpm vitest run '+test,{stdio:'inherit',cwd:j.workspaceRoot||process.cwd()});}catch(e){}});\"",
+        "timeout": 60
+      }
+    }
+  ]
+}

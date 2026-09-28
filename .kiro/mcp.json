@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."],
+      "disabled": false
+    },
+    "whimsical-village-dev": {
+      "command": "node",
+      "args": ["tools/mcp-server/index.js"],
+      "disabled": false
+    }
+  }
+}
