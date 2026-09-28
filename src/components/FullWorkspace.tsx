@@ -9,6 +9,7 @@
 import { useState } from "react";
 import { useAppStore } from "../store/appStore";
 import Settings from "./Settings";
+import WorldCanvas from "./WorldCanvas";
 
 type SidePanel = "tasks" | "output" | "history" | "settings";
 
@@ -67,26 +68,17 @@ export default function FullWorkspace({ onCollapse }: FullWorkspaceProps) {
 
       {/* ── Main body ──────────────────────────────────────────────────────── */}
       <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
-        {/* World canvas area — ≥60% width (Phase 2 will render the canvas here) */}
+        {/* World canvas area — ≥60% width (Req 2.6, Phase 2 renders here) */}
         <div
           style={{
             flex: "0 0 62%",
             position: "relative",
             background: "rgba(10,8,4,0.7)",
             borderRight: "1px solid var(--color-border)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            overflow: "hidden",
           }}
         >
-          {/* Phase 2 will mount <WorldCanvas /> here */}
-          <div style={{ textAlign: "center", color: "var(--color-text-muted)", fontSize: "13px" }}>
-            <div style={{ fontSize: "40px", marginBottom: "12px" }}>🌿</div>
-            <div>World scene — Phase 2</div>
-            <div style={{ fontSize: "11px", marginTop: "4px", opacity: 0.6 }}>
-              Canvas renderer coming in Phase 2
-            </div>
-          </div>
+          <WorldCanvas compact={false} />
         </div>
 
         {/* Right sidebar */}
