@@ -4,11 +4,10 @@
  * Req 2.7 (WSM continues across mode switches), Req 5.1–6.
  */
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { useAppStore } from "../store/appStore";
-import type { CreatureId, WorkstationId } from "../store/appStore";
 import { WorldRenderer, CANVAS_WIDTH, CANVAS_HEIGHT } from "../world/WorldRenderer";
-import { startAllWSMs, stopAllWSMs } from "../world/WorldStateMachine";
+import { startAllWSMs } from "../world/WorldStateMachine";
 import CreatureDetail from "./CreatureDetail";
 import WorkstationDetail from "./WorkstationDetail";
 

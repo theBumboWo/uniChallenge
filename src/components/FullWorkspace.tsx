@@ -10,6 +10,8 @@ import { useState } from "react";
 import { useAppStore } from "../store/appStore";
 import Settings from "./Settings";
 import WorldCanvas from "./WorldCanvas";
+import TaskForm from "./TaskForm";
+import ExecutionOutput from "./ExecutionOutput";
 
 type SidePanel = "tasks" | "output" | "history" | "settings";
 
@@ -108,8 +110,8 @@ export default function FullWorkspace({ onCollapse }: FullWorkspaceProps) {
 
           {/* Panel content */}
           <div style={{ flex: 1, overflow: "auto", padding: "16px" }}>
-            {activePanel === "tasks" && <TaskPanel />}
-            {activePanel === "output" && <OutputPanel />}
+            {activePanel === "tasks" && <TaskForm />}
+            {activePanel === "output" && <ExecutionOutput />}
             {activePanel === "history" && <HistoryPanel tasks={Object.values(tasks)} />}
             {activePanel === "settings" && <Settings />}
           </div>
@@ -119,30 +121,9 @@ export default function FullWorkspace({ onCollapse }: FullWorkspaceProps) {
   );
 }
 
-// ── Panel stubs (Phase 3 will flesh these out) ────────────────────────────────
+// ── Panel stubs (only History remains — others replaced by real components) ──
 
-function TaskPanel() {
-  return (
-    <div>
-      <p style={hintStyle}>
-        Task submission form — Phase 3 (Req 6)
-      </p>
-      <p style={{ ...hintStyle, marginTop: "6px", fontSize: "11px" }}>
-        Use <kbd style={kbdStyle}>Ctrl+Shift+N</kbd> to submit a task once implemented.
-      </p>
-    </div>
-  );
-}
-
-function OutputPanel() {
-  return (
-    <div>
-      <p style={hintStyle}>Execution output — Phase 3 (Req 6.7)</p>
-    </div>
-  );
-}
-
-function HistoryPanel({ tasks }: { tasks: ReturnType<typeof useAppStore>["tasks"] extends Record<string, infer T> ? T[] : never[] }) {
+function HistoryPanel({ tasks }: { tasks: import("../store/appStore").Task[] }) {
   if (tasks.length === 0) {
     return <p style={hintStyle}>No tasks yet.</p>;
   }
@@ -199,14 +180,4 @@ const hintStyle: React.CSSProperties = {
   fontSize: "12px",
   color: "var(--color-text-muted)",
   fontStyle: "italic",
-};
-
-const kbdStyle: React.CSSProperties = {
-  background: "rgba(255,255,255,0.08)",
-  border: "1px solid var(--color-border)",
-  borderRadius: "3px",
-  padding: "1px 5px",
-  fontSize: "10px",
-  fontFamily: "monospace",
-  fontStyle: "normal",
 };

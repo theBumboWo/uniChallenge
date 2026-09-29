@@ -6,7 +6,7 @@
  *   - If either tile is not walkable or start === goal → path is empty
  */
 
-import { describe, it, expect } from "vitest";
+import { describe, it } from "vitest";
 import * as fc from "fast-check";
 import { findPath, GRID_WIDTH, GRID_HEIGHT } from "../../world/Pathfinder";
 

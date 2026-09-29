@@ -26,7 +26,6 @@ const PROVIDER_BINARIES: Record<ProviderId, string> = {
 
 export default function App() {
   const displayMode = useAppStore((s) => s.ui.displayMode);
-  const preferences = useAppStore((s) => s.preferences);
   const { setDisplayMode, setProviderInfo, setWindowVisible, updateTask } = useAppStore(
     (s) => s.actions
   );

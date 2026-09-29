@@ -57,7 +57,6 @@ const WORKSTATION_TILES: Record<WorkstationId, { x: number; y: number }> = {
 };
 
 export class WorldRenderer {
-  private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   private hitBoxManager: HitBoxManager;
 
@@ -77,7 +76,6 @@ export class WorldRenderer {
   private rainDrops: { x: number; y: number; speed: number; length: number }[] = [];
 
   constructor(canvas: HTMLCanvasElement) {
-    this.canvas = canvas;
     this.ctx = canvas.getContext("2d")!;
     this.hitBoxManager = new HitBoxManager();
     this.initRain();

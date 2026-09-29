@@ -5,7 +5,7 @@
  * the resulting creature state is always a member of VALID_CREATURE_STATES.
  */
 
-import { describe, it, expect } from "vitest";
+import { describe, it } from "vitest";
 import * as fc from "fast-check";
 import { VALID_CREATURE_STATES } from "../../store/appStore";
 

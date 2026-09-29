@@ -10,7 +10,7 @@
  */
 
 import { useAppStore } from "../store/appStore";
-import type { CreatureId, CreatureAnimationState, Tile } from "../store/appStore";
+import type { CreatureId, Tile } from "../store/appStore";
 import { findPath, occupiedSet, GRID_WIDTH } from "./Pathfinder";
 
 // ── WSM Event types ────────────────────────────────────────────────────────────

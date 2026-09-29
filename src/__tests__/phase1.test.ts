@@ -2,7 +2,7 @@
  * Phase 1 smoke tests — App shell, services, and component contracts.
  * Req 1, 2, 13, 14, 17.
  */
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, beforeEach } from "vitest";
 import { useAppStore, DEFAULT_PREFERENCES } from "../store/appStore";
 
 // Services are tested with mocked Tauri IPC (see setup.ts)

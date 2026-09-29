@@ -1,0 +1,1 @@
+{"default":{"identifier":"default","description":"Default capabilities for Whimsical Agent Village","local":true,"windows":["main"],"permissions":["core:default","shell:allow-execute","shell:allow-kill","notification:default","sql:default"]}}

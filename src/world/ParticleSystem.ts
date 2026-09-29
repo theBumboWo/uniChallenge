@@ -13,7 +13,7 @@
  */
 
 import { useAppStore } from "../store/appStore";
-import type { Particle, ParticleKind } from "../store/appStore";
+import type { Particle } from "../store/appStore";
 
 let _particleIdCounter = 0;
 function newId(): string {

@@ -10,6 +10,8 @@
 
 import { useAppStore } from "../store/appStore";
 import type { WorkstationId, CreatureId } from "../store/appStore";
+import { handleApprove, handleDeny } from "../agents/ApprovalHandler";
+import { getSession } from "../agents/TaskOrchestrator";
 
 interface Props {
   workstationId: WorkstationId;
@@ -90,14 +92,22 @@ export default function WorkstationDetail({ workstationId, onClose, onApprove, o
               </div>
               <div style={{ display: "flex", gap: "6px" }}>
                 <button
-                  onClick={() => onApprove?.(activeTask.id)}
+                  onClick={async () => {
+                    const session = getSession(activeTask.id);
+                    if (session) await handleApprove(activeTask.id, session);
+                    onApprove?.(activeTask.id);
+                  }}
                   style={approveBtnStyle}
                   aria-label="Approve action"
                 >
                   ✓ Approve
                 </button>
                 <button
-                  onClick={() => onDeny?.(activeTask.id)}
+                  onClick={async () => {
+                    const session = getSession(activeTask.id);
+                    if (session) await handleDeny(activeTask.id, session);
+                    onDeny?.(activeTask.id);
+                  }}
                   style={denyBtnStyle}
                   aria-label="Deny action"
                 >

@@ -1,9 +1,9 @@
+/// <reference types="vitest/globals" />
 /**
  * Vitest global setup — runs before every test file.
+ * Mocks Tauri APIs so tests run outside WebView.
  */
 
-// Mock the Tauri API so unit/PBT tests can run outside Tauri WebView.
-// Real IPC calls are tested via integration tests in Phase 3+.
 vi.mock("@tauri-apps/api/core", () => ({
   invoke: vi.fn().mockResolvedValue(null),
 }));
@@ -11,4 +11,13 @@ vi.mock("@tauri-apps/api/core", () => ({
 vi.mock("@tauri-apps/api/event", () => ({
   listen: vi.fn().mockResolvedValue(() => {}),
   emit: vi.fn().mockResolvedValue(undefined),
+}));
+
+vi.mock("@tauri-apps/plugin-sql", () => ({
+  default: {
+    load: vi.fn().mockResolvedValue({
+      execute: vi.fn().mockResolvedValue({ rowsAffected: 0, lastInsertId: 0 }),
+      select: vi.fn().mockResolvedValue([]),
+    }),
+  },
 }));
